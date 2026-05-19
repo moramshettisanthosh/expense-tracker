@@ -5,7 +5,7 @@ let dbPromise;
 
 async function getDbConnection() {
   if (!dbPromise) {
-    const dbPath = process.env.VERCEL ? '/tmp/database.sqlite' : './database.sqlite';
+    const dbPath = process.env.VERCEL ? ':memory:' : './database.sqlite';
     dbPromise = open({
       filename: dbPath,
       driver: sqlite3.Database
