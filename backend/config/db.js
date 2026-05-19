@@ -5,8 +5,9 @@ let dbPromise;
 
 async function getDbConnection() {
   if (!dbPromise) {
+    const dbPath = process.env.VERCEL ? '/tmp/database.sqlite' : './database.sqlite';
     dbPromise = open({
-      filename: './database.sqlite',
+      filename: dbPath,
       driver: sqlite3.Database
     }).then(async (db) => {
       console.log('Connected to SQLite database.');
